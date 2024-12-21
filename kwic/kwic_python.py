@@ -109,6 +109,7 @@ class Output:
                         for char in range(self.sort.rotate.num_chars(shift, word)))
                 for word in range(self.sort.rotate.num_words(shift))
             )
+            print(keyword_and_after)
             before_keyword = "".join(
                 "".join(chr(self.sort.rotate.get_char(shift, -word - 1, char))
                         for char in range(self.sort.rotate.num_chars(shift, -word - 1)))

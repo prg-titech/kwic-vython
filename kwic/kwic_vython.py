@@ -83,6 +83,7 @@ class Sort!1:
             char = (self.rotate.get_char(shift, 0, char_i))
             if String!1("a").get(0) <= char <= String!1("z").get(0):
                 char = char - 32
+                # char = _wrap_ord(char) - 32
             keyword.add(String!1(char))
         return keyword
 
@@ -103,15 +104,15 @@ class Output!1:
     def output(self):
         result = []
         for shift in _wrap_range(self.sort.rotate.num_rows()):
-            keyword_and_after = ""
+            keyword_and_after = String!1("")
             for word in _wrap_range(self.sort.rotate.num_words(shift)):
                 for char in _wrap_range(self.sort.rotate.num_chars(shift, word)):
-                    keyword_and_after  = keyword_and_after + _wrap_chr(self.sort.rotate.get_char(shift, word, char))
-            before_keyword = ""
+                    keyword_and_after  = keyword_and_after + String!1(self.sort.rotate.get_char(shift, word, char))
+            before_keyword = String!1("")
             for word in _wrap_range(self.sort.rotate.num_back_words(shift)):
                 for char in _wrap_range(self.sort.rotate.num_chars(shift, -word - 1)):
-                    before_keyword  = before_keyword + _wrap_chr(self.sort.rotate.get_char(shift, -word-1, char))
-            result.append("" + self.sort.rotate.original_row(shift) + " " + before_keyword[-35:].rjust(35) + "|" + keyword_and_after[:35])
+                    before_keyword  = before_keyword + String!1(self.sort.rotate.get_char(shift, -word-1, char))
+            result.append(String!1("") + String!1(str(self.sort.rotate.original_row(shift))) + String!1(" ") + before_keyword[-35:].rjust(35) + String!1("|") + keyword_and_after[:35])
         for order in self.sort.row_indices:
             print(result[order])
 
@@ -146,6 +147,18 @@ class String!1():
     
     def __lt__(self, other):
         return self.value < other.value
+
+    def __add__(self, other):
+        return String!1(self.value + other.value)
+
+    def __getitem__(self, items):
+        return String!1(self.value.__getitem__(items))
+    
+    def rjust(self, i):
+        return String!1(self.value.rjust(i))
+
+    def __repr__(self):
+        return self.value
     
 class String!2():
     def __init__(self, value):
@@ -171,8 +184,20 @@ class String!2():
     
     def __lt__(self, other):
         return self.value < other.value
+    
+    def __add__(self, other):
+        return String!2(self.value + other.value)
 
-titles_papers = [String!1("reverse-engineering weep ReLU networks"), String!1("Hi"), String!1("Reverse-engineering deep ReLU networks")]
-titles_books = [String!1("Reverse-engineering deep ReLU networks"), String!1("Hi")]
-titles = titles_papers + titles_books
+    def __getitem__(self, items):
+        return String!2(self.value.__getitem__(items))
+    
+    def rjust(self, i):
+        return String!2(self.value.rjust(i))
+
+    def __repr__(self):
+        return self.value
+
+titles = [String!1("reverse-engineering weep ReLU networks"), 
+          String!1("My Fair Bandit: Distributed Learning of Max-Min Fairness with Multi-player Bandits"), 
+          String!1("Scalable Differentiable Physics for Learning and Control")]
 Integrate!1().main(titles)

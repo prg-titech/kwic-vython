@@ -82,8 +82,8 @@ class Sort!1:
         for char_i in _wrap_range(self.rotate.num_chars(shift, 0)):
             char = (self.rotate.get_char(shift, 0, char_i))
             if String!1("a").get(0) <= char <= String!1("z").get(0):
-                char = char - 32
-                # char = _wrap_ord(char) - 32
+                # char = _wrap_chr(char - 32)
+                char = _wrap_chr(_wrap_ord(char) - 32)
             keyword.add(String!1(char))
         return keyword
 

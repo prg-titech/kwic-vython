@@ -81,8 +81,8 @@ class Sort:
         keyword = String_1("")
         for char_i in range(self.rotate.num_chars(shift, 0)):
             char = (self.rotate.get_char(shift, 0, char_i))
-            if String_2("a").get(0) <= char <= String_2("z").get(0):
-                char = ord(char) - (32)
+            if String_1("a").get(0) <= char <= String_1("z").get(0):
+                char = (char) - (32)
             keyword.add(String_1(char))
         return keyword
 
@@ -185,8 +185,8 @@ class String_2():
         return self.value < other.value 
 
 if __name__ == "__main__":
-    # titles_papers = [String_1("reverse-engineering weep ReLU networks"), String_1("Hi"), String_1("Reverse-engineering deep ReLU networks")]
+    titles = [String_1("reverse-engineering weep ReLU networks"), String_1("My Fair Bandit: Distributed Learning of Max-Min Fairness with Multi-player Bandits"), String_1("Scalable Differentiable Physics for Learning and Control")]
     # titles_books = [String_1("Reverse-engineering deep ReLU networks"), String_1("Hi")]
     # titles = titles_papers + titles_books
-    titles = [String_2("Reverse-engineering deep ReLU networks")]
+    # titles = [String_2("Reverse-engineering deep ReLU networks")]
     Integrate().main(titles)

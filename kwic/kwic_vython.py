@@ -82,8 +82,8 @@ class Sort!1:
         for char_i in _wrap_range(self.rotate.num_chars(shift, 0)):
             char = (self.rotate.get_char(shift, 0, char_i))
             if String!1("a").get(0) <= char <= String!1("z").get(0):
-                # char = _wrap_chr(char - 32)
-                char = _wrap_chr(_wrap_ord(char) - 32)
+                char = _wrap_chr(char - 32)
+                # char = _wrap_chr(_wrap_ord(char) - 32)
             keyword.add(String!1(char))
         return keyword
 
@@ -168,7 +168,7 @@ class String!2():
             self.value = value
     
     def get(self, i):
-        return _incompatible_value(VStr(self.value[i]), "String", 2, "[Changed in version 2] `String().get(i)`:\n - returns a string whose length is 1 consisting of the i-th character.\n - but returns the character code of the i-th character in version 1.")
+        return _incompatible_value(self.value[i], "String", 2, "[Changed in version 2] `String().get(i)`:\n - returns a string whose length is 1 consisting of the i-th character.\n - but returns the character code of the i-th character in version 1.")
   
     def split(self):
         result = []
